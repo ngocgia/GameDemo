@@ -153,6 +153,17 @@ window.addEventListener('load', function(){
             this.frameY = Math.floor(Math.random() *3);
         }
     }
+    
+    class Angler2 extends Enemy {
+        constructor(game){
+            super(game);
+            this.width = 213;
+            this.height = 165;
+            this.y = Math.random() * (this.game.height * 0.9 - this.height);
+            this.image = document.getElementById('angler2');
+            this.frameY = Math.floor(Math.random() * 2);
+        }
+    }
 
     class Layer{
         constructor(game, image, speedModifier) {
@@ -318,7 +329,9 @@ window.addEventListener('load', function(){
             this.backgroud.layer4.draw(context);
         }
         addEnemy(){
-            this.enemies.push(new Angler1(this));
+            const ramdomize = Math.random();
+            if(ramdomize < 0.5)  this.enemies.push(new Angler1(this));
+            else this.enemies.push(new Angler2(this));
             console.log(this.enemies);
         }
         checkCollison(rect1, rect2){
